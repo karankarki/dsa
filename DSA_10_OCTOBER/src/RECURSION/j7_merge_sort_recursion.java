@@ -1,0 +1,72 @@
+package RECURSION;
+
+import java.util.Arrays;
+
+public class j7_merge_sort_recursion {
+
+    public  static  int[] merge(int[] left ,int[] right){
+        int []final_arr = new int[left.length+right.length];
+
+        int i = 0;
+        int j = 0;
+        int ind = 0;
+
+        while(i<left.length && j<right.length){
+
+            if(left[i]<=right[j]){
+                final_arr[ind] = left[i];
+                i++;
+                ind++;
+            }
+
+            else{
+                final_arr[ind] = right[j];
+                j++;
+                ind++;
+            }
+
+
+
+        }
+
+        while(i<left.length){
+            final_arr[ind++] = left[i++];
+        } while(j<right.length){
+            final_arr[ind++] = right[j++];
+        }
+
+        return final_arr;
+
+    }
+    public static int[] mergesort(int[] arr ){
+
+        if(arr.length ==1){
+            return  arr;
+        }
+
+
+        int mid = arr.length/2;
+
+        int []left = mergesort(Arrays.copyOfRange(arr,0,mid));
+        int []right = mergesort(Arrays.copyOfRange(arr,mid,arr.length));
+
+        System.out.print("left array = "+Arrays.toString(left)+"      ");
+        System.out.print("right array = "+Arrays.toString(right)+"     ");
+
+        int []sol = merge(left,right);
+        System.out.print("merged array = "+Arrays.toString(sol)+"     ");
+        System.out.println();
+        return  sol;
+
+//
+
+    }
+
+    public static void main(String[] args) {
+        int []arr = {5,4,3,2,1};
+        int[] ans = mergesort(arr);
+        System.out.println(Arrays.toString(ans));
+
+
+    }
+}
